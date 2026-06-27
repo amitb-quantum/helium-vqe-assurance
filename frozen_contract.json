@@ -1,0 +1,35 @@
+{
+  "label": "contract",
+  "frozen_at_utc": "2026-06-27T21:51:43.742747+00:00",
+  "sha256": "44d34db05a53f148672dc1e2108604977243f0e9fd1574e1b6a61db8d2ed35c3",
+  "payload": {
+    "name": "helium_vqe_v1",
+    "abstain_sigma_factor": 1.0,
+    "invariants": [
+      {
+        "name": "energy",
+        "kind": "lower_bound",
+        "target": -2.870162139,
+        "tol": 0.0016,
+        "hard": true,
+        "units": "hartree"
+      },
+      {
+        "name": "particle_number",
+        "kind": "equality",
+        "target": 2.0,
+        "tol": 0.05,
+        "hard": true,
+        "units": "electrons"
+      },
+      {
+        "name": "spin_projection_sz",
+        "kind": "equality",
+        "target": 0.0,
+        "tol": 0.05,
+        "hard": true,
+        "units": "hbar"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+# Core
+numpy>=1.26
+scipy>=1.11
+# Quantum stack
+qiskit>=2.0
+qiskit-aer>=0.15          # local simulation (CPU)
+# qiskit-aer-gpu>=0.15    # OPTIONAL: GPU sim on RTX 4060 / RTX A1000 (CUDA)
+qiskit-nature>=0.7
+pyscf>=2.5                # classical electronic-structure reference (HF/FCI)
+# Hardware submission (IBM Kingston)
+qiskit-ibm-runtime>=0.30

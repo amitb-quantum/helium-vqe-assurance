@@ -1,0 +1,27 @@
+# Conda environment for the helium-VQE / IBM Kingston assurance project.
+# Pinned to the exact versions the pipeline was verified against.
+#
+#   conda env create -f environment.yml      # creates env named "ibm"
+#   conda activate ibm
+#
+# Notes for the Dell6 laptop (WSL, Intel Arc GPU, no NVIDIA):
+#   * Do NOT add qiskit-aer-gpu -- it is CUDA-only and will not use the Arc GPU.
+#   * Everything here runs on CPU; 4 qubits is instantaneous.
+name: ibm
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip>=24
+  # keep the heavy numerics from conda-forge for clean BLAS/LAPACK,
+  # then let pip pull the qiskit ecosystem (qiskit recommends pip installs)
+  - numpy=2.2.*
+  - scipy=1.15.*
+  - matplotlib-base=3.10.*
+  - pip:
+      - qiskit==2.4.2
+      - qiskit-aer==0.17.2
+      - qiskit-nature==0.8.0
+      - qiskit-ibm-runtime>=0.40,<0.48
+      - pyscf==2.13.1
+      - sympy==1.14.0

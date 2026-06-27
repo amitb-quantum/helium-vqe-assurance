@@ -1,0 +1,95 @@
+{
+  "pipeline": "helium-vqe-assurance / kingston-LIVE (retrieved)",
+  "preflight": {
+    "contract": {
+      "label": "contract",
+      "frozen_at_utc": "2026-06-27T18:33:47.023057+00:00",
+      "sha256": "44d34db05a53f148672dc1e2108604977243f0e9fd1574e1b6a61db8d2ed35c3",
+      "payload": {
+        "name": "helium_vqe_v1",
+        "abstain_sigma_factor": 1.0,
+        "invariants": [
+          {
+            "name": "energy",
+            "kind": "lower_bound",
+            "target": -2.870162139,
+            "tol": 0.0016,
+            "hard": true,
+            "units": "hartree"
+          },
+          {
+            "name": "particle_number",
+            "kind": "equality",
+            "target": 2.0,
+            "tol": 0.05,
+            "hard": true,
+            "units": "electrons"
+          },
+          {
+            "name": "spin_projection_sz",
+            "kind": "equality",
+            "target": 0.0,
+            "tol": 0.05,
+            "hard": true,
+            "units": "hbar"
+          }
+        ]
+      }
+    }
+  },
+  "execute": {
+    "kingston_live": {
+      "measurements": {
+        "energy": [
+          -1.6812977546317582,
+          0.022493432686736606
+        ],
+        "particle_number": [
+          1.1406029789193837,
+          0.018137284070353487
+        ],
+        "spin_projection_sz": [
+          -0.4381011416390645,
+          0.008155594825416647
+        ]
+      },
+      "extra": {
+        "provider_job_id": "d901cp1ropqc738d6dc0",
+        "quantum_seconds": 14.0
+      }
+    }
+  },
+  "postflight": {
+    "kingston_live": {
+      "overall": "FLAG",
+      "contract_sha256": "44d34db05a53f148672dc1e2108604977243f0e9fd1574e1b6a61db8d2ed35c3",
+      "invariant_results": [
+        {
+          "name": "energy",
+          "verdict": "ABSTAIN",
+          "detail": "sigma=2.25e-02 exceeds 1.0*tol=1.60e-03",
+          "measured": -1.6812977546317582,
+          "target": -2.870162139,
+          "residual": 1.1888643843682418
+        },
+        {
+          "name": "particle_number",
+          "verdict": "FLAG",
+          "detail": "|residual|=8.59e-01 exceeds tol=5.00e-02",
+          "measured": 1.1406029789193837,
+          "target": 2.0,
+          "residual": -0.8593970210806163
+        },
+        {
+          "name": "spin_projection_sz",
+          "verdict": "FLAG",
+          "detail": "|residual|=4.38e-01 exceeds tol=5.00e-02",
+          "measured": -0.4381011416390645,
+          "target": 0.0,
+          "residual": -0.4381011416390645
+        }
+      ]
+    }
+  },
+  "trail_sha256": "c21029a09675de60ff3b9a3ebb7ee30309a23dc84b2f3f457aacbc04ddbe3816"
+}

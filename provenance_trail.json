@@ -1,0 +1,230 @@
+{
+  "pipeline": "helium-vqe-assurance (open reference)",
+  "preflight": {
+    "hamiltonian": {
+      "label": "hamiltonian",
+      "frozen_at_utc": "2026-06-27T06:16:14.807573+00:00",
+      "sha256": "27f03ec63fa513e80b70cdf9e310a324fcb1e160ef2a36bbdd1782fac961745c",
+      "payload": {
+        "basis": "6-31g",
+        "n_qubits": 4,
+        "n_electrons": 2,
+        "nuclear_repulsion": 0.0,
+        "n_pauli_terms": 27,
+        "hf_energy_hartree": -2.855160426154446,
+        "fci_energy_hartree": -2.8701621389008216,
+        "exact_qubit_ground_energy_hartree": -2.8701621389008194
+      }
+    },
+    "contract": {
+      "label": "contract",
+      "frozen_at_utc": "2026-06-27T06:16:14.807715+00:00",
+      "sha256": "2883bb39413a3e26625fef935cfe463721c9d486b9ae633c69a68320fcd81be3",
+      "payload": {
+        "name": "helium_vqe_v1",
+        "abstain_sigma_factor": 1.0,
+        "invariants": [
+          {
+            "name": "energy",
+            "kind": "lower_bound",
+            "target": -2.8701621389008194,
+            "tol": 0.0016,
+            "hard": true,
+            "units": "hartree"
+          },
+          {
+            "name": "particle_number",
+            "kind": "equality",
+            "target": 2.0,
+            "tol": 0.05,
+            "hard": true,
+            "units": "electrons"
+          },
+          {
+            "name": "spin_projection_sz",
+            "kind": "equality",
+            "target": 0.0,
+            "tol": 0.05,
+            "hard": true,
+            "units": "hbar"
+          }
+        ]
+      }
+    }
+  },
+  "execute": {
+    "noiseless": {
+      "label": "noiseless_statevector",
+      "measurements": {
+        "energy": [
+          -2.8701621389008176,
+          0.0
+        ],
+        "particle_number": [
+          1.9999999999999996,
+          0.0
+        ],
+        "spin_projection_sz": [
+          0.0,
+          0.0
+        ]
+      },
+      "optimal_params": [
+        -0.0020800608054470262,
+        -0.002080039150104362,
+        -0.06580140473219284
+      ],
+      "extra": {
+        "optimizer": "COBYLA",
+        "converged_message": "Optimization terminated successfully."
+      }
+    },
+    "noisy_4000shots": {
+      "label": "aer_noisy_shots4000_scale1.0",
+      "measurements": {
+        "energy": [
+          -2.1937041501409906,
+          0.015811388300841896
+        ],
+        "particle_number": [
+          2.0559923444612993,
+          0.015811388300841896
+        ],
+        "spin_projection_sz": [
+          0.049300138326391255,
+          0.015811388300841896
+        ]
+      },
+      "optimal_params": [
+        -0.0020800608054470262,
+        -0.002080039150104362,
+        -0.06580140473219284
+      ],
+      "extra": {
+        "shots": 4000,
+        "noise_scale": 1.0,
+        "device": "CPU"
+      }
+    },
+    "lowshot_80": {
+      "label": "aer_noisy_shots80_scale1.0",
+      "measurements": {
+        "energy": [
+          -2.1704782868580423,
+          0.11180339887498948
+        ],
+        "particle_number": [
+          2.0256250994173897,
+          0.11180339887498948
+        ],
+        "spin_projection_sz": [
+          -0.11922064373453356,
+          0.11180339887498948
+        ]
+      },
+      "optimal_params": [
+        -0.0020800608054470262,
+        -0.002080039150104362,
+        -0.06580140473219284
+      ],
+      "extra": {
+        "shots": 80,
+        "noise_scale": 1.0,
+        "device": "CPU"
+      }
+    }
+  },
+  "postflight": {
+    "noiseless": {
+      "overall": "ACCEPT",
+      "contract_sha256": "2883bb39413a3e26625fef935cfe463721c9d486b9ae633c69a68320fcd81be3",
+      "invariant_results": [
+        {
+          "name": "energy",
+          "verdict": "ACCEPT",
+          "detail": "at or above exact ground state within tol",
+          "measured": -2.8701621389008176,
+          "target": -2.8701621389008194,
+          "residual": 1.7763568394002505e-15
+        },
+        {
+          "name": "particle_number",
+          "verdict": "ACCEPT",
+          "detail": "within tolerance",
+          "measured": 1.9999999999999996,
+          "target": 2.0,
+          "residual": -4.440892098500626e-16
+        },
+        {
+          "name": "spin_projection_sz",
+          "verdict": "ACCEPT",
+          "detail": "within tolerance",
+          "measured": 0.0,
+          "target": 0.0,
+          "residual": 0.0
+        }
+      ]
+    },
+    "noisy_4000shots": {
+      "overall": "FLAG",
+      "contract_sha256": "2883bb39413a3e26625fef935cfe463721c9d486b9ae633c69a68320fcd81be3",
+      "invariant_results": [
+        {
+          "name": "energy",
+          "verdict": "ABSTAIN",
+          "detail": "sigma=1.58e-02 exceeds 1.0*tol=1.60e-03",
+          "measured": -2.1937041501409906,
+          "target": -2.8701621389008194,
+          "residual": 0.6764579887598288
+        },
+        {
+          "name": "particle_number",
+          "verdict": "FLAG",
+          "detail": "|residual|=5.60e-02 exceeds tol=5.00e-02",
+          "measured": 2.0559923444612993,
+          "target": 2.0,
+          "residual": 0.055992344461299304
+        },
+        {
+          "name": "spin_projection_sz",
+          "verdict": "ACCEPT",
+          "detail": "within tolerance",
+          "measured": 0.049300138326391255,
+          "target": 0.0,
+          "residual": 0.049300138326391255
+        }
+      ]
+    },
+    "lowshot_80": {
+      "overall": "ABSTAIN",
+      "contract_sha256": "2883bb39413a3e26625fef935cfe463721c9d486b9ae633c69a68320fcd81be3",
+      "invariant_results": [
+        {
+          "name": "energy",
+          "verdict": "ABSTAIN",
+          "detail": "sigma=1.12e-01 exceeds 1.0*tol=1.60e-03",
+          "measured": -2.1704782868580423,
+          "target": -2.8701621389008194,
+          "residual": 0.699683852042777
+        },
+        {
+          "name": "particle_number",
+          "verdict": "ABSTAIN",
+          "detail": "sigma=1.12e-01 exceeds 1.0*tol=5.00e-02",
+          "measured": 2.0256250994173897,
+          "target": 2.0,
+          "residual": 0.025625099417389663
+        },
+        {
+          "name": "spin_projection_sz",
+          "verdict": "ABSTAIN",
+          "detail": "sigma=1.12e-01 exceeds 1.0*tol=5.00e-02",
+          "measured": -0.11922064373453356,
+          "target": 0.0,
+          "residual": -0.11922064373453356
+        }
+      ]
+    }
+  },
+  "trail_sha256": "c9f43b6a96b4544072395a95e44071e9dca12ea44ff0c80417d2352bd7cf4e38"
+}

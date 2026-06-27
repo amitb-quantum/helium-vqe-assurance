@@ -1,0 +1,165 @@
+{
+  "pipeline": "helium-vqe-assurance / kingston-twin",
+  "preflight": {
+    "contract": {
+      "label": "contract",
+      "frozen_at_utc": "2026-06-27T06:27:16.938285+00:00",
+      "sha256": "2883bb39413a3e26625fef935cfe463721c9d486b9ae633c69a68320fcd81be3",
+      "payload": {
+        "name": "helium_vqe_v1",
+        "abstain_sigma_factor": 1.0,
+        "invariants": [
+          {
+            "name": "energy",
+            "kind": "lower_bound",
+            "target": -2.8701621389008194,
+            "tol": 0.0016,
+            "hard": true,
+            "units": "hartree"
+          },
+          {
+            "name": "particle_number",
+            "kind": "equality",
+            "target": 2.0,
+            "tol": 0.05,
+            "hard": true,
+            "units": "electrons"
+          },
+          {
+            "name": "spin_projection_sz",
+            "kind": "equality",
+            "target": 0.0,
+            "tol": 0.05,
+            "hard": true,
+            "units": "hbar"
+          }
+        ]
+      }
+    },
+    "device_calibration": {
+      "label": "device_calibration",
+      "frozen_at_utc": "2026-06-27T06:27:22.100968+00:00",
+      "sha256": "d4d7806e6a540a838f14d07f46621075a40f9e01192fd07d2288925d4759903c",
+      "payload": {
+        "backend_name": "ibm_kingston",
+        "extraction_timestamp": "2026-04-08T17:09:17.257690",
+        "n_qubits": 156,
+        "n_edges": 352
+      }
+    },
+    "placement": {
+      "chain": [
+        68,
+        67,
+        57,
+        47
+      ],
+      "cost": 0.0280105530705759,
+      "line_coupling": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "edge_errors": [
+        0.0011453821532214914,
+        0.0016112836712545153,
+        0.0017121881788283444
+      ],
+      "readout_errors": [
+        0.0029296875,
+        0.007568359375,
+        0.006591796875,
+        0.0054931640625
+      ],
+      "sx_errors": [
+        0.0001630591069851381,
+        0.000194222402020927,
+        0.00020269866817028377,
+        0.0003987110775952023
+      ],
+      "T1": [
+        0.00026166089591696105,
+        0.000351588837858416,
+        0.00017505730828367162,
+        0.00040909265071824383
+      ],
+      "T2": [
+        0.00018731746585648226,
+        0.0002851571470841686,
+        0.00016375390336568414,
+        0.00038036693383977383
+      ]
+    }
+  },
+  "execute": {
+    "kingston_twin": {
+      "measurements": {
+        "energy": [
+          -2.729736438238992,
+          0.011180339887498949
+        ],
+        "particle_number": [
+          2.034319317102122,
+          0.011180339887498949
+        ],
+        "spin_projection_sz": [
+          0.010166606166079936,
+          0.011180339887498949
+        ]
+      },
+      "extra": {
+        "backend": "ibm_kingston",
+        "shots": 8000,
+        "physical_qubits": [
+          68,
+          67,
+          57,
+          47
+        ],
+        "placement_cost": 0.0280105530705759
+      }
+    }
+  },
+  "postflight": {
+    "kingston_twin": {
+      "overall": "ABSTAIN",
+      "contract_sha256": "2883bb39413a3e26625fef935cfe463721c9d486b9ae633c69a68320fcd81be3",
+      "invariant_results": [
+        {
+          "name": "energy",
+          "verdict": "ABSTAIN",
+          "detail": "sigma=1.12e-02 exceeds 1.0*tol=1.60e-03",
+          "measured": -2.729736438238992,
+          "target": -2.8701621389008194,
+          "residual": 0.14042570066182725
+        },
+        {
+          "name": "particle_number",
+          "verdict": "ACCEPT",
+          "detail": "within tolerance",
+          "measured": 2.034319317102122,
+          "target": 2.0,
+          "residual": 0.03431931710212188
+        },
+        {
+          "name": "spin_projection_sz",
+          "verdict": "ACCEPT",
+          "detail": "within tolerance",
+          "measured": 0.010166606166079936,
+          "target": 0.0,
+          "residual": 0.010166606166079936
+        }
+      ]
+    }
+  },
+  "trail_sha256": "89dcade054d403ea0d4c2b455ebea811fbb7a80d046bef8cbf83d8c94eb324fd"
+}

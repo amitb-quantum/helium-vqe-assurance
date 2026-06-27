@@ -1,0 +1,95 @@
+{
+  "pipeline": "helium-vqe-assurance / kingston-LIVE (retrieved)",
+  "preflight": {
+    "contract": {
+      "label": "contract",
+      "frozen_at_utc": "2026-06-27T21:25:29.426692+00:00",
+      "sha256": "44d34db05a53f148672dc1e2108604977243f0e9fd1574e1b6a61db8d2ed35c3",
+      "payload": {
+        "name": "helium_vqe_v1",
+        "abstain_sigma_factor": 1.0,
+        "invariants": [
+          {
+            "name": "energy",
+            "kind": "lower_bound",
+            "target": -2.870162139,
+            "tol": 0.0016,
+            "hard": true,
+            "units": "hartree"
+          },
+          {
+            "name": "particle_number",
+            "kind": "equality",
+            "target": 2.0,
+            "tol": 0.05,
+            "hard": true,
+            "units": "electrons"
+          },
+          {
+            "name": "spin_projection_sz",
+            "kind": "equality",
+            "target": 0.0,
+            "tol": 0.05,
+            "hard": true,
+            "units": "hbar"
+          }
+        ]
+      }
+    }
+  },
+  "execute": {
+    "kingston_live": {
+      "measurements": {
+        "energy": [
+          -2.3975011484116338,
+          0.02321617773514572
+        ],
+        "particle_number": [
+          2.038965911645866,
+          0.019788774151412895
+        ],
+        "spin_projection_sz": [
+          -0.0014516453958101916,
+          0.01014590322427985
+        ]
+      },
+      "extra": {
+        "provider_job_id": "d9018e06c68s73ahgqqg",
+        "quantum_seconds": 14.0
+      }
+    }
+  },
+  "postflight": {
+    "kingston_live": {
+      "overall": "ABSTAIN",
+      "contract_sha256": "44d34db05a53f148672dc1e2108604977243f0e9fd1574e1b6a61db8d2ed35c3",
+      "invariant_results": [
+        {
+          "name": "energy",
+          "verdict": "ABSTAIN",
+          "detail": "sigma=2.32e-02 exceeds 1.0*tol=1.60e-03",
+          "measured": -2.3975011484116338,
+          "target": -2.870162139,
+          "residual": 0.4726609905883663
+        },
+        {
+          "name": "particle_number",
+          "verdict": "ACCEPT",
+          "detail": "within tolerance",
+          "measured": 2.038965911645866,
+          "target": 2.0,
+          "residual": 0.03896591164586605
+        },
+        {
+          "name": "spin_projection_sz",
+          "verdict": "ACCEPT",
+          "detail": "within tolerance",
+          "measured": -0.0014516453958101916,
+          "target": 0.0,
+          "residual": -0.0014516453958101916
+        }
+      ]
+    }
+  },
+  "trail_sha256": "370b028eb36d7a5d3636d5bbb1428f6b180eb3caa255019ab0cefa6e7aeaee8f"
+}

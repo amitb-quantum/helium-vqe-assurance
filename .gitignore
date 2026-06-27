@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+ibm-quantum-account-transfer.json
+*account-transfer*.json
+.env
+*.token
+qiskit-ibm.json
