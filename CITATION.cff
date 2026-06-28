@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite it as below."
+title: "Pre-Registered Result Assurance for Variational Quantum Eigensolvers: A Helium Testbed Across Two IBM Heron Processors"
+abstract: >-
+  A pre-registered, hash-bound result-assurance workflow for variational
+  quantum eigensolver (VQE) computations, demonstrated on the helium atom and
+  executed across two IBM Heron r2 processors (ibm_kingston and ibm_fez). A
+  contract of physical invariants is frozen and SHA-256-hashed before any result
+  is seen, then results are scored ACCEPT / FLAG / ABSTAIN. Every verdict
+  recomputes from published data with no QPU re-run. Scope: a four-qubit,
+  two-electron testbed; not a quantum-advantage or three-body-problem claim.
+type: software
+version: "1.0"
+date-released: "2026-06-28"
+license: Apache-2.0
+repository-code: "https://github.com/amitb-quantum/helium-vqe-assurance"
+url: "https://github.com/amitb-quantum/helium-vqe-assurance"
+authors:
+  - name: "Quantum-Clarity LLC"
+keywords:
+  - quantum computing
+  - result assurance
+  - pre-registration
+  - variational quantum eigensolver
+  - reproducibility
+  - provenance
+  - IBM Quantum
+# doi: 10.5281/zenodo.XXXXXXX   # uncomment and fill in after the Zenodo deposit
