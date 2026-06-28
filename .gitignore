@@ -1,7 +1,21 @@
+# Python
 __pycache__/
 *.pyc
+.venv/
+*.egg-info/
+
+# Secrets — NEVER commit
 ibm-quantum-account-transfer.json
 *account-transfer*.json
-.env
-*.token
+.qiskit/
 qiskit-ibm.json
+
+# Commercial / internal — keep OUT of the public repo
+*Positioning_Brief*.docx
+*Pilot*.docx
+*pilot*.docx
+*Shadow*Mode*.docx
+commercial/
+
+# NOTE: provenance_trail*.json are PUBLISHED ON PURPOSE — recompute_verdicts.py
+# reproduces every verdict from them. Do NOT ignore them. (Previous line removed.)
